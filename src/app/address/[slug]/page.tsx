@@ -25,6 +25,8 @@ export default async function Page({
 
   const response = await fetch(`${process.env.URL}/api/address?address=${slug}`);
 
+  console.log(response);
+
   const info = (await response.json()) as Address;
 
   console.log(info);
