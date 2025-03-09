@@ -23,7 +23,7 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const response = await fetch(`api/address?address=${slug}`);
+  const response = await fetch(`${process.env.URL}/api/address?address=${slug}`);
 
   const info = (await response.json()) as Address;
 
