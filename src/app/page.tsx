@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { Box, Button, Chip, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { Chips } from "@/app/Chips";
 
 export default function Home() {

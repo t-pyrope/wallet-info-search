@@ -1,5 +1,6 @@
 import type { Handler, HandlerEvent } from "@netlify/functions";
 
+// @ts-expect-error - is actually used
 const handler: Handler = async (event: HandlerEvent) => {
   console.log("event", event);
   return await fetch(
