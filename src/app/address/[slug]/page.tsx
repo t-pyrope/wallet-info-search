@@ -23,9 +23,7 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const response = await fetch(`/.netlify/functions/getAddressInfo`, {
-    body: slug,
-  });
+  const response = await fetch(`api/address?address=${slug}`);
 
   const info = (await response.json()) as Address;
 
