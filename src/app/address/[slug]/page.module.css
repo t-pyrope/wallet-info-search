@@ -1,14 +1,9 @@
-.page {
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
+.header {
+  padding: 40px 40px 0;
 }
 
 .main {
+  padding: 20px 40px 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;

@@ -1,3 +1,5 @@
+import { ResponseAborted } from "next/dist/server/web/spec-extension/adapters/next-request";
+
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const address = url.searchParams.get("address");
@@ -13,6 +15,10 @@ export async function GET(request: Request) {
     },
   );
 
-    const info = await response.json();
-    return Response.json(info);
+  if (!response.ok) {
+    throw new ResponseAborted(response.statusText);
+  }
+
+  const info = await response.json();
+  return Response.json(info);
 }
