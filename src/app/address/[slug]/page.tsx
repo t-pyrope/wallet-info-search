@@ -10,6 +10,7 @@ import {
 import { LeftArrow } from "next/dist/client/components/react-dev-overlay/ui/icons/left-arrow";
 import Link from "next/link";
 import { NotFound } from "@/app/address/[slug]/NotFound";
+import { fetchAddresses, postAddress } from "@/app/lib/data";
 import styles from "./page.module.css";
 
 interface Address {
@@ -35,6 +36,14 @@ export default async function Page({
 
   if (response.ok) {
     info = (await response.json()) as Address;
+  }
+
+  if (info) {
+    const addresses = (await fetchAddresses()) as { address: string }[];
+    const savedAddress = addresses.find((address) => address.address === slug);
+    if (!savedAddress && addresses.length < 5) {
+      await postAddress(slug);
+    }
   }
 
   return (
