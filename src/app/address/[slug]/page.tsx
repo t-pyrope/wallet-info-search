@@ -1,5 +1,7 @@
 import {
   Button,
+  Paper,
+  Table,
   TableBody,
   TableCell,
   TableContainer,
@@ -9,8 +11,10 @@ import {
 } from "@mui/material";
 import { LeftArrow } from "next/dist/client/components/react-dev-overlay/ui/icons/left-arrow";
 import Link from "next/link";
-import { NotFound } from "@/app/address/[slug]/NotFound";
+
 import { fetchAddresses, postAddress } from "@/app/lib/data";
+import { NotFound } from "@/app/address/[slug]/NotFound";
+import { UnitTableRow } from "@/app/address/[slug]/UnitTableRow";
 import styles from "./page.module.css";
 
 interface Address {
@@ -59,27 +63,22 @@ export default async function Page({
             <Typography variant="h1" typography="h5">
               {info.address}
             </Typography>
-            <Typography>Type: {info.type}</Typography>
-            <TableContainer>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Unit</TableCell>
-                  <TableCell align="right">Quantity</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {info.amount.map(({ unit, quantity }) => (
-                  <TableRow
-                    key={unit}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {unit}
-                    </TableCell>
-                    <TableCell align="right">{quantity}</TableCell>
+            <Typography>Address era: {info.type}</Typography>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell />
+                    <TableCell>Unit</TableCell>
+                    <TableCell align="right">Quantity</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
+                </TableHead>
+                <TableBody>
+                  {info.amount.map(({ unit, quantity }) => (
+                    <UnitTableRow unit={unit} quantity={quantity} key={unit} />
+                  ))}
+                </TableBody>
+              </Table>
             </TableContainer>
           </>
         ) : (
