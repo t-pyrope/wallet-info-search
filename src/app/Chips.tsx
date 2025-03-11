@@ -1,15 +1,9 @@
 "use client";
 
 import { Box, Chip, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const Chips = ({ addresses }: { addresses: { address: string }[] }) => {
-  const router = useRouter();
-
-  const handleChipClick = (address: string) => {
-    router.push(`/address/${address}`);
-  };
-
   return (
     <Box>
       <Typography variant="h2" typography="h6">
@@ -19,8 +13,10 @@ export const Chips = ({ addresses }: { addresses: { address: string }[] }) => {
         {addresses.map(({ address }) => (
           <Chip
             key="address"
-            onClick={() => handleChipClick(address)}
             label={address}
+            component={Link}
+            href={`/address/${address}`}
+            sx={{ cursor: "pointer" }}
           />
         ))}
       </Box>
