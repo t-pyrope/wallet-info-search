@@ -17,7 +17,7 @@ export const UnitTableRow = async ({
 
     const logoUrl = info?.metadata?.logo ?? info?.onchain_metadata?.image;
 
-    if (logoUrl) {
+    if (logoUrl && typeof logoUrl === "string") {
       if (logoUrl.startsWith("ipfs")) {
         logo = logoUrl.replace("ipfs://", "https://ipfs.io/ipfs/");
       } else {
