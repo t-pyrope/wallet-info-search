@@ -1,20 +1,10 @@
-import {
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { LeftArrow } from "next/dist/client/components/react-dev-overlay/ui/icons/left-arrow";
 import Link from "next/link";
 
 import { fetchAddresses, postAddress } from "@/app/lib/data";
 import { NotFound } from "@/app/address/[slug]/NotFound";
-import { UnitTableRow } from "@/app/address/[slug]/UnitTableRow";
+import { UnitTable } from "@/app/address/[slug]/UnitTable";
 import styles from "./page.module.css";
 
 interface Address {
@@ -64,22 +54,7 @@ export default async function Page({
               {info.address}
             </Typography>
             <Typography>Address era: {info.type}</Typography>
-            <TableContainer component={Paper}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell />
-                    <TableCell>Unit</TableCell>
-                    <TableCell align="right">Quantity</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {info.amount.map(({ unit, quantity }) => (
-                    <UnitTableRow unit={unit} quantity={quantity} key={unit} />
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <UnitTable units={info.amount} />
           </>
         ) : (
           <NotFound slug={slug} />
