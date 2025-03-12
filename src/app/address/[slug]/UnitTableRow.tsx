@@ -51,7 +51,7 @@ export const UnitTableRow = ({
           <EmojiEmotionsIcon />{" "}
         </Avatar>
       </TableCell>
-      <TableCell component="th" scope="row">
+      <TableCell sx={{ width: '100%' }}>
         {unit}
       </TableCell>
       <TableCell align="right">{quantity}</TableCell>

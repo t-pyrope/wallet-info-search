@@ -37,30 +37,33 @@ export const UnitTable = ({
   );
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Unit</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {visibleUnits.map(({ unit, quantity }) => (
-            <UnitTableRow key={unit} unit={unit} quantity={quantity} />
-          ))}
-        </TableBody>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={units.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Unit</TableCell>
+              <TableCell align="right">Quantity</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {visibleUnits.map(({ unit, quantity }) => (
+              <UnitTableRow key={unit} unit={unit} quantity={quantity} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>{" "}
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={units.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{ width: "100%" }}
+      />
+    </>
   );
 };
